@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Team | Dipanchal Innovation Lab{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container text-center fade-in-up">
+        <h1><strong>The Minds Behind DiL</strong></h1>
+        <p class="section-subtitle" style="color: var(--text-light); margin: 1rem auto 0 auto;">
+            A collaborative network of visionary thinkers, dedicated researchers, and future tech leaders driving
+            innovation for humanity.
+        </p>
+    </div>
+</section>
+
+{% if advisors %}
+<section class="team-section section-padding bg-light">
+    <div class="container">
+        <h2 class="section-title">Advisory Panel</h2>
+        <div class="grid-3 team-grid">
+            {% for member in advisors %}
+            {% include 'partials/_team_card.html' with is_advisor=True %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if investigators %}
+<section class="team-section section-padding">
+    <div class="container">
+        <h2 class="section-title">Investigator Panel</h2>
+        <div class="grid-3 team-grid">
+            {% for member in investigators %}
+            {% include 'partials/_team_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if mentors %}
+<section class="team-section section-padding bg-light">
+    <div class="container">
+        <h2 class="section-title">Research Mentors</h2>
+        <div class="grid-4 team-grid">
+            {% for member in mentors %}
+            {% include 'partials/_team_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if ras %}
+<section class="team-section section-padding">
+    <div class="container">
+        <h2 class="section-title">Research Assistants</h2>
+        <div class="grid-4 team-grid">
+            {% for member in ras %}
+            {% include 'partials/_team_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if uras %}
+<section class="team-section section-padding bg-light">
+    <div class="container">
+        <h2 class="section-title">Undergraduate Research Assistants</h2>
+        <div class="grid-4 team-grid">
+            {% for member in uras %}
+            {% include 'partials/_team_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="join-team-cta section-padding">
+    <div class="container text-center animated-cta">
+        <h2>Ready to make an impact?</h2>
+        <p>We are always looking for passionate individuals to join our research efforts.</p>
+        <div class="center-btn">
+            <a href="{% url 'contact' %}" class="btn btn-primary btn-pulse">Join Our Team <i
+                    class="fas fa-rocket"></i></a>
+        </div>
+    </div>
+</section>
+{% endblock %}

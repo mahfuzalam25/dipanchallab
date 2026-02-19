@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dipanchal Innovation Lab | DiL{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="{% url 'home' %}" class="brand-logo">
+                <img src="{% static 'img/dilLogo.png' %}" alt="DiL Logo" class="logo-img" width="70" height="70">
+            </a>
+
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="{% url 'home' %}" class="nav-item">Home</a></li>
+                <li><a href="{% url 'research' %}" class="nav-item">Research</a></li>
+                <li><a href="{% url 'publications' %}" class="nav-item">Publications</a></li>
+                <li><a href="{% url 'resources' %}" class="nav-item">Resources</a></li>
+                <li><a href="{% url 'team' %}" class="nav-item">Team</a></li>
+                <li><a href="{% url 'contact' %}" class="nav-item">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="{% static 'img/dilLogo.png' %}" alt="DiL Logo" class="footer-logo" width="60" height="60">
+                <p>Dipanchal Innovation Lab (DiL) is dedicated to pioneering research in AI, fostering technological
+                    growth, and delivering innovation for humanity.</p>
+                <p class="location-text"><i class="fas fa-map-marker-alt"></i> Sylhet, Bangladesh</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'research' %}">Research</a></li>
+                    <li><a href="{% url 'publications' %}">Publications</a></li>
+                    <li><a href="{% url 'resources' %}">Resources</a></li>
+                    <li><a href="{% url 'team' %}">Team</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Research Areas</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Machine Learning</a></li>
+                    <li><a href="#">Deep Learning</a></li>
+                    <li><a href="#">Artificial Intelligence</a></li>
+                    <li><a href="#">Computer Vision</a></li>
+                    <li><a href="#">Natural Language Processing</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p class="email-text"><i class="fas fa-envelope"></i> contact@dipanchallab.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Dipanchal Innovation Lab. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}" defer></script>
+</body>
+
+</html>

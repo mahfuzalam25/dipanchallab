@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ongoing Projects | Dipanchal Innovation Lab{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container text-center fade-in-up">
+        <h1>Ongoing <span class="highlight">Projects</span></h1>
+        <p class="section-subtitle" style="color: var(--text-light); margin: 1rem auto 0 auto;">
+            Discover the active research and innovative systems being built by our community at DiL.
+        </p>
+    </div>
+</section>
+
+<section class="projects section-padding bg-light">
+    <div class="container">
+        <div class="grid-3">
+            
+            {% for project in projects %}
+            <div class="card">
+                <img src="{{ project.image.url }}" alt="Project Image" class="card-img">
+                <div class="card-body">
+                    <h3>{{ project.title|default:"Innovation in Progress" }}</h3>
+                    <p>{{ project.description|default:"Details regarding this research project are currently being documented." }}</p>
+                    <p class="contributors">
+                        <strong>Contributors:</strong> 
+                        {{ project.contributors|default:"DiL Research Team" }}
+                    </p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="empty-state">
+                <p>New projects are currently being updated. Check back soon!</p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,31 @@
+<div class="team-card {% if is_advisor %}highlight-card{% endif %}">
+    <div class="team-img-wrapper">
+        {% if member.image %}
+        <img src="{{ member.image.url }}" alt="{{ member.name }}" width="150" height="150" class="team-img">
+        {% else %}
+        <div class="team-img-fallback">
+            <i class="fas fa-user-tie"></i>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="team-info">
+        <h3>{{ member.name }}</h3>
+        <p class="lab-role">{{ member.get_lab_designation_display }}</p>
+        <p class="self-role">{{ member.self_designation }}</p>
+
+        <div class="team-socials">
+            {% if member.email %}
+            <a href="mailto:{{ member.email }}" aria-label="Email" title="Email"><i class="fas fa-envelope"></i></a>
+            {% endif %}
+            {% if member.linkedin %}
+            <a href="{{ member.linkedin }}" target="_blank" aria-label="LinkedIn" title="LinkedIn"><i
+                    class="fab fa-linkedin"></i></a>
+            {% endif %}
+            {% if member.facebook %}
+            <a href="{{ member.facebook }}" target="_blank" aria-label="Facebook" title="Facebook"><i
+                    class="fab fa-facebook"></i></a>
+            {% endif %}
+        </div>
+    </div>
+</div>

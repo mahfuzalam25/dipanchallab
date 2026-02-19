@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content fade-in-up">
+        <h1>Advancing the Frontier of <span class="highlight">Intelligence</span></h1>
+        <p>Innovation for humanity. We specialize in cutting-edge research across Machine Learning, Deep Learning, and
+            AI to solve real-world complexities.</p>
+        <div class="hero-buttons">
+            <a href="{% url 'research' %}" class="btn btn-primary">Explore Our Work</a>
+            <a href="{% url 'contact' %}" class="btn btn-secondary">Join the Lab</a>
+        </div>
+    </div>
+    <div class="hero-animation">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+</section>
+
+<section class="projects section-padding bg-light">
+    <div class="container">
+        <h2 class="section-title">Igniting Ideas: Ongoing Projects</h2>
+        <div class="grid-3">
+
+            {% for project in projects %}
+            <div class="card">
+                <img src="{{ project.image.url }}" alt="Project Image" class="card-img">
+                <div class="card-body">
+                    <h3>{{ project.title|default:"Innovation in Progress" }}</h3>
+                    <p>{{ project.description }}</p>
+                    <p class="contributors">
+                        <strong>Contributors:</strong>
+                        {{ project.contributors|default:"DiL Research Team" }}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <div class="center-btn">
+            <a href="{% url 'projects' %}" class="btn btn-primary">View All Projects <i
+                    class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<section class="publications section-padding">
+    <div class="container">
+        <h2 class="section-title">Latest Discoveries</h2>
+        <div class="grid-2">
+
+            {% for pub in recent_pubs %}
+            {% include 'partials/_pub_card.html' %}
+            {% empty %}
+            <p class="empty-state">New discoveries are being documented. Check back soon.</p>
+            {% endfor %}
+
+        </div>
+        <div class="center-btn">
+            <a href="{% url 'publications' %}" class="btn btn-primary">View All Publications <i
+                    class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<section class="progress-section">
+    <div class="container progress-grid">
+
+        {% for stat in progress_stats %}
+        <div class="stat-card">
+            <i class="{{ stat.icon_class }}"></i>
+            <h3>{{ stat.value }}</h3>
+            <p>{{ stat.label }}</p>
+        </div>
+
+        {% empty %}
+        <div class="stat-card">
+            <i class="fas fa-user-graduate"></i>
+            <h3>40+</h3>
+            <p>Active Researchers</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-project-diagram"></i>
+            <h3>25</h3>
+            <p>Completed Projects</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-book"></i>
+            <h3>100+</h3>
+            <p>Publications</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-handshake"></i>
+            <h3>15</h3>
+            <p>Industry Partners</p>
+        </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+<section class="research-areas section-padding bg-light">
+    <div class="container">
+        <h2 class="section-title">Our Research Focus</h2>
+        <p class="section-subtitle">Driving structural change and technological advancement across diverse computational
+            disciplines.</p>
+
+        <div class="center-btn mb-4">
+            <a href="{% url 'research' %}" class="btn btn-secondary">Uncover All Research Areas</a>
+        </div>
+
+        <div class="grid-3">
+            <div class="card research-card">
+                <div class="card-icon"><i class="fas fa-brain"></i></div>
+                <h3>Machine Learning</h3>
+                <p>Developing scalable algorithms to parse complex datasets and establish predictive models for
+                    healthcare.</p>
+                <a href="#" class="btn btn-outline">Learn More</a>
+            </div>
+            <div class="card research-card">
+                <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+                <h3>Deep Learning</h3>
+                <p>Pushing the boundaries of neural network architectures for complex generative tasks.</p>
+                <a href="#" class="btn btn-outline">Learn More</a>
+            </div>
+            <div class="card research-card">
+                <div class="card-icon"><i class="fas fa-language"></i></div>
+                <h3>NLP</h3>
+                <p>Enhancing human-computer interaction through advanced context-aware language models.</p>
+                <a href="#" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about section-padding">
+    <div class="container">
+        <h2 class="section-title">The Heart of DiL</h2>
+        <p class="about-text">At Dipanchal Innovation Lab, we believe that the intersection of human creativity and
+            machine intelligence holds the key to the next great leap in technology. Our lab acts as an incubator for
+            bleeding-edge ideas, bringing together students, academic professionals, and industry leaders to collaborate
+            on meaningful, humanity-first solutions.</p>
+
+        <div class="grid-3 mt-4">
+            <div class="icon-box">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Innovation First</h3>
+                <p>Prioritizing novel approaches over established norms.</p>
+            </div>
+            <div class="icon-box">
+                <i class="fas fa-users"></i>
+                <h3>Community Driven</h3>
+                <p>Building a network of passionate computational thinkers.</p>
+            </div>
+            <div class="icon-box">
+                <i class="fas fa-globe"></i>
+                <h3>Global Impact</h3>
+                <p>Designing local solutions that scale to global challenges.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

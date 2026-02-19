@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us | Dipanchal Innovation Lab{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container text-center fade-in-up">
+        <h1><strong>Let's Collaborate</strong></h1>
+        <p class="section-subtitle" style="color: var(--text-light); margin: 1rem auto 0 auto;">
+            Whether you are a prospective student, a researcher looking to collaborate, or an industry partner, we want to hear from you.
+        </p>
+    </div>
+</section>
+
+<section class="contact-section section-padding bg-light">
+    <div class="container">
+        
+        {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="contact-grid">
+            
+            <div class="contact-info-wrapper">
+                <h2 class="section-title" style="text-align: left;">Get in Touch</h2>
+                <p class="mb-4 text-muted">Reach out to us directly using the information below, or fill out the form to send us a message.</p>
+                
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="info-text">
+                        <h3>Email Us</h3>
+                        <p>{{ lab_info.email|default:"contact@dipanchallab.org" }}</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="info-text">
+                        <h3>Call Us</h3>
+                        <p>{{ lab_info.phone|default:"+880 Contact Number" }}</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="info-text">
+                        <h3>Our Location</h3>
+                        <p>{{ lab_info.address|default:"Sylhet, Bangladesh" }}</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-clock"></i></div>
+                    <div class="info-text">
+                        <h3>Office Hours</h3>
+                        <p>{{ lab_info.office_hours|default:"Mon-Fri, 9:00 AM - 5:00 PM (Asia/Dhaka)" }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-wrapper">
+                <form action="{% url 'contact' %}" method="POST" class="dil-form">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Ridoy Chowdhury" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="your@example.com" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required placeholder="Research Collaboration Inquiry" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="How can we help you?" class="form-control"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Send Message <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Publications | Dipanchal Innovation Lab{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container text-center fade-in-up">
+        <h1><strong>Disseminating Knowledge</strong></h1>
+        <p class="section-subtitle" style="color: var(--text-light); margin: 1rem auto 0 auto;">
+            <strong>Driving the academic discourse forward through rigorous peer-reviewed research, preprints, and
+                open-source discoveries.</strong>
+        </p>
+    </div>
+</section>
+
+<section class="search-filter-section bg-light section-padding pb-0">
+    <div class="container">
+        <form method="GET" action="{% url 'publications' %}" class="search-form">
+            <div class="search-bar">
+                <input type="text" name="q" value="{{ query }}" placeholder="Search by publication title or author..."
+                    class="search-input">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
+            </div>
+
+            <div class="filter-groups">
+                <div class="filter-row">
+                    <span class="filter-label">Type:</span>
+                    <a href="?q={{ query }}&year={{ current_year }}"
+                        class="filter-badge {% if not current_type %}active{% endif %}">All</a>
+                    {% for type in available_types %}
+                    <a href="?q={{ query }}&type={{ type }}&year={{ current_year }}"
+                        class="filter-badge {% if current_type == type %}active{% endif %}">{{ type }}</a>
+                    {% endfor %}
+                </div>
+
+                <div class="filter-row">
+                    <span class="filter-label">Year:</span>
+                    <a href="?q={{ query }}&type={{ current_type }}"
+                        class="filter-badge {% if not current_year %}active{% endif %}">All Time</a>
+
+                    {% for date_obj in available_years %}
+                    <a href="?q={{ query }}&type={{ current_type }}&year={{ date_obj.year }}"
+                        class="filter-badge {% if current_year == date_obj.year|stringformat:'i' %}active{% endif %}">{{ date_obj.year }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </form>
+
+        <div class="results-counter">
+            {% if query or current_type or current_year %}
+            <p>Showing <strong>{{ total_count }}</strong> matched publication(s).</p>
+            {% else %}
+            <p>Total Publications: <strong>{{ total_count }}</strong></p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% if featured_pubs %}
+<section class="publications section-padding">
+    <div class="container">
+        <h2 class="section-title">Spotlight Research</h2>
+        <div class="grid-2">
+            {% for pub in featured_pubs %}
+            {% include 'partials/_pub_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="publications section-padding {% if not featured_pubs %}pt-4{% endif %} bg-light">
+    <div class="container">
+        <h2 class="section-title">Lab Archive</h2>
+        <div class="grid-2">
+            {% for pub in all_pubs %}
+            {% include 'partials/_pub_card.html' %}
+            {% empty %}
+            <div class="empty-state">No publications found matching your criteria.</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

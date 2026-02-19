@@ -1,0 +1,31 @@
+<div class="pub-card-vertical">
+    <div class="pub-card-header">
+        <img src="{{ pub.image.url }}" alt="Paper Thumbnail" class="pub-thumb">
+        <div class="pub-badges">
+            <span class="badge badge-status">{{ pub.status }}</span>
+            <span class="badge badge-type">{{ pub.pub_type }}</span>
+        </div>
+    </div>
+    <div class="pub-card-body">
+        <h3>{{ pub.title }}</h3>
+        <p class="authors">{{ pub.authors }}</p>
+        <p class="date"><i class="far fa-calendar-alt"></i> {{ pub.date|date:"F Y" }}</p>
+
+        <div class="pub-actions">
+            {% if pub.paper_link %}
+            <a href="{{ pub.paper_link }}" target="_blank" class="btn btn-outline btn-sm">Read Paper <i
+                    class="fas fa-external-link-alt"></i></a>
+            {% endif %}
+            {% if pub.abstract %}
+            <button class="btn btn-secondary btn-sm toggle-abstract-btn">Show Abstract <i
+                    class="fas fa-chevron-down"></i></button>
+            {% endif %}
+        </div>
+
+        {% if pub.abstract %}
+        <div class="pub-abstract-content hidden">
+            <p><strong>Abstract:</strong> {{ pub.abstract }}</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
