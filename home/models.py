@@ -120,16 +120,22 @@ class TeamMember(models.Model):
     
 
 class LabInformation(models.Model):
+    description = models.TextField(
+        default="Dipanchal Innovation Lab (DiL) is dedicated to pioneering research in AI, fostering technological growth, and delivering innovation for humanity."
+    )
     email = models.EmailField(default="contact@dipanchallab.org")
     phone = models.CharField(max_length=20, default="+880 1234-567890")
     address = models.TextField(default="Sylhet, Bangladesh")
     office_hours = models.CharField(max_length=100, default="Mon-Fri, 9:00 AM - 5:00 PM (Asia/Dhaka)")
+    linkedin = models.URLField(blank=True, null=True)
+    facebook = models.URLField(blank=True, null=True)
+    orcid = models.URLField(blank=True, null=True, help_text="Link to the lab's or lead PI's ORCID profile")
 
     class Meta:
         verbose_name_plural = "Lab Information"
 
     def __str__(self):
-        return "Primary Lab Contact Information"
+        return "Global Lab Settings"
 
 class ContactMessage(models.Model):
     name = models.CharField(max_length=100)

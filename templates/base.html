@@ -42,9 +42,8 @@
         <div class="footer-container">
             <div class="footer-section">
                 <img src="{% static 'img/dilLogo.png' %}" alt="DiL Logo" class="footer-logo" width="60" height="60">
-                <p>Dipanchal Innovation Lab (DiL) is dedicated to pioneering research in AI, fostering technological
-                    growth, and delivering innovation for humanity.</p>
-                <p class="location-text"><i class="fas fa-map-marker-alt"></i> Sylhet, Bangladesh</p>
+                <p>{{ global_lab_info.description|default:"Dipanchal Innovation Lab (DiL) is dedicated to pioneering research in AI, fostering technological growth, and delivering innovation for humanity." }}</p>
+                <p class="location-text"><i class="fas fa-map-marker-alt"></i> {{ global_lab_info.address|default:"Location not set" }}</p>
             </div>
 
             <div class="footer-section">
@@ -73,11 +72,11 @@
             <div class="footer-section">
                 <h3>Connect</h3>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="{{ global_lab_info.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="{{ global_lab_info.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="{{ global_lab_info.orcid }}" target="_blank"><i class="fab fa-orcid"></i></a>
                 </div>
-                <p class="email-text"><i class="fas fa-envelope"></i> contact@dipanchallab.org</p>
+                <p class="email-text"><i class="fas fa-envelope"></i> {{ global_lab_info.email|default:"contact@dipanchallab.org" }}</p>
             </div>
         </div>
         <div class="footer-bottom">
